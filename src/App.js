@@ -1,12 +1,21 @@
 import React from "react";
-import Header from "./Header";
+import Header from "./components/Header";
 import "./style.scss";
+import Burger from "./components/Burger";
+import { Container, Col, Row } from "react-bootstrap";
 
 function App() {
   return (
-    <div>
+    <>
       <Header />
-    </div>
+      <Container>
+        <Row>
+          <Col>
+            <Burger />
+          </Col>
+        </Row>
+      </Container>
+    </>
   );
 }
 
