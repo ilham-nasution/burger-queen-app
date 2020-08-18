@@ -5,7 +5,7 @@ const Menu = (props) => {
   return (
     <Form>
       <Form.Group as={Row}>
-        <Form.Label column sm="2">
+        <Form.Label className="text-primary" column sm="2">
           Meat
         </Form.Label>
         <Col xs={7}>
@@ -24,7 +24,7 @@ const Menu = (props) => {
       </Form.Group>
 
       <Form.Group as={Row}>
-        <Form.Label column sm="2">
+        <Form.Label className="text-primary" column sm="2">
           Cheese
         </Form.Label>
         <Col xs={7}>
@@ -41,9 +41,11 @@ const Menu = (props) => {
           </Button>
         </Col>
       </Form.Group>
-      <Button variant="primary" type="submit">
-        Submit
-      </Button>
+      <div className="text-center">
+        <Button variant="primary" type="submit" block>
+          Submit
+        </Button>
+      </div>
     </Form>
   );
 };

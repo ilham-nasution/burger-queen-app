@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Header from "./components/Header";
 import "./style.scss";
 import Burger from "./components/Burger";
-import { Container, Col, Row } from "react-bootstrap";
+import { Container } from "react-bootstrap";
 import Menu from "./components/Menu";
 
 export default class App extends Component {
@@ -13,9 +13,11 @@ export default class App extends Component {
   }
 
   handleMeatPlusBtn = () => {
-    this.setState({
-      meat: ++this.state.meat,
-    });
+    if (this.state.meat < 3) {
+      this.setState({
+        meat: ++this.state.meat,
+      });
+    }
   };
 
   handleMeatMinusBtn = () => {
@@ -25,9 +27,11 @@ export default class App extends Component {
   };
 
   handleCheesePlusBtn = () => {
-    this.setState({
-      cheese: ++this.state.cheese,
-    });
+    if (this.state.cheese < 3) {
+      this.setState({
+        cheese: ++this.state.cheese,
+      });
+    }
   };
 
   handleCheeseMinusBtn = () => {
@@ -41,8 +45,8 @@ export default class App extends Component {
       <>
         <Header />
         <Container>
-          <Row>
-            <Col>
+          <div className="center">
+            <div>
               <Burger meat={this.state.meat} cheese={this.state.cheese} />
               <Menu
                 meat={this.state.meat}
@@ -52,8 +56,8 @@ export default class App extends Component {
                 cheesePlusBtn={this.handleCheesePlusBtn}
                 meatPlusBtn={this.handleMeatPlusBtn}
               />
-            </Col>
-          </Row>
+            </div>
+          </div>
         </Container>
       </>
     );
