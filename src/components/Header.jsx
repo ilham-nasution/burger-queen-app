@@ -1,18 +1,22 @@
-import React from "react";
-import { Navbar, Nav } from "react-bootstrap";
+import React, { useState } from "react";
+import { Navbar, Nav, Badge } from "react-bootstrap";
+import Cart from "./Cart";
 
-const Header = () => {
+const Header = ({ order }) => {
+  const [modal, setModal] = useState(false);
+
   return (
-    <Navbar variant="dark" expand="lg">
-      <Navbar.Brand href="#home">Burger Queen</Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse className="justify-content-end" id="basic-navbar-nav">
-        <Nav>
-          <Nav.Link href="#home">Builder</Nav.Link>
-          <Nav.Link href="#link">Orders</Nav.Link>
+    <>
+      <Navbar variant="dark">
+        <Navbar.Brand href="/">Burger Queen</Navbar.Brand>
+        <Nav className="mr-auto">
+          <Nav.Link href="#" onClick={() => setModal(true)}>
+            Orders <Badge variant="secondary">{order.length}</Badge>
+          </Nav.Link>
         </Nav>
-      </Navbar.Collapse>
-    </Navbar>
+      </Navbar>
+      <Cart order={order} show={modal} onHide={() => setModal(false)} />
+    </>
   );
 };
 

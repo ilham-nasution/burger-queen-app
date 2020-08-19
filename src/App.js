@@ -1,65 +1,78 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Header from "./components/Header";
 import "./style.scss";
 import Burger from "./components/Burger";
 import { Container } from "react-bootstrap";
 import Menu from "./components/Menu";
 
-export default class App extends Component {
-  constructor(props) {
-    super(props);
+const initialState = {
+  meat: 0,
+  cheese: 0,
+};
 
-    this.state = { meat: 0, cheese: 0 };
-  }
+const App = () => {
+  const [value, setValue] = useState(initialState);
+  const [order, setOrder] = useState([]);
 
-  handleMeatPlusBtn = () => {
-    if (this.state.meat < 3) {
-      this.setState({
-        meat: ++this.state.meat,
-      });
+  const handleMeatPlusBtn = () => {
+    if (value.meat < 3) {
+      setValue((prevValue) => ({
+        ...prevValue,
+        meat: value.meat + 1,
+      }));
     }
   };
 
-  handleMeatMinusBtn = () => {
-    this.setState({
-      meat: Math.max(0, --this.state.meat),
-    });
+  const handleMeatMinusBtn = () => {
+    setValue((prevValue) => ({
+      ...prevValue,
+      meat: Math.max(0, value.meat - 1),
+    }));
   };
 
-  handleCheesePlusBtn = () => {
-    if (this.state.cheese < 3) {
-      this.setState({
-        cheese: ++this.state.cheese,
-      });
+  const handleCheesePlusBtn = () => {
+    if (value.cheese < 3) {
+      setValue((prevValue) => ({
+        ...prevValue,
+        cheese: value.cheese + 1,
+      }));
     }
   };
 
-  handleCheeseMinusBtn = () => {
-    this.setState({
-      cheese: Math.max(0, --this.state.cheese),
-    });
+  const handleCheeseMinusBtn = () => {
+    setValue((prevValue) => ({
+      ...prevValue,
+      cheese: Math.max(0, value.cheese - 1),
+    }));
   };
 
-  render() {
-    return (
-      <>
-        <Header />
-        <Container>
-          <div className="center">
-            <div>
-              <Burger meat={this.state.meat} cheese={this.state.cheese} />
-              <Menu
-                meat={this.state.meat}
-                cheese={this.state.cheese}
-                cheeseMinusBtn={this.handleCheeseMinusBtn}
-                meatMinusBtn={this.handleMeatMinusBtn}
-                cheesePlusBtn={this.handleCheesePlusBtn}
-                meatPlusBtn={this.handleMeatPlusBtn}
-              />
-            </div>
+  const handleOrder = (event) => {
+    event.preventDefault();
+    setOrder((prevValue) => [...prevValue, value]);
+    setValue(initialState);
+  };
+
+  return (
+    <>
+      <Header order={order} />
+      <Container>
+        <div className="center">
+          <div>
+            <Burger meat={value.meat} cheese={value.cheese} />
+            <Menu
+              meat={value.meat}
+              cheese={value.cheese}
+              cheeseMinusBtn={handleCheeseMinusBtn}
+              meatMinusBtn={handleMeatMinusBtn}
+              cheesePlusBtn={handleCheesePlusBtn}
+              meatPlusBtn={handleMeatPlusBtn}
+              order={handleOrder}
+            />
           </div>
-        </Container>
-      </>
-    );
-  }
-}
+        </div>
+      </Container>
+    </>
+  );
+};
+
+export default App;
