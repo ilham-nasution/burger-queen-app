@@ -53,3 +53,18 @@ body {
   background: linear-gradient(#f4d004, #d6bb22);
   border-radius: 20px;
 }
+
+.animation-enter {
+  transform: translate(-1000px, 0px);
+}
+.animation-enter-active {
+  transform: translate(0px, 0px);
+  transition: all 500ms;
+}
+.animation-exit {
+  transform: translate(0px, 0px);
+}
+.animation-exit-active {
+  transform: translate(1000px, 0px);
+  transition: all 500ms;
+}
