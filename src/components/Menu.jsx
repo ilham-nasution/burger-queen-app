@@ -8,7 +8,7 @@ const Menu = (props) => {
         <Form.Label className="text-primary" column sm="2">
           Meat
         </Form.Label>
-        <Col xs={7}>
+        <Col xs={8} sm={7}>
           <Form.Control readOnly name="meat" value={props.meat} />
         </Col>
         <Col>
@@ -27,7 +27,7 @@ const Menu = (props) => {
         <Form.Label className="text-primary" column sm="2">
           Cheese
         </Form.Label>
-        <Col xs={7}>
+        <Col xs={8} sm={7}>
           <Form.Control readOnly name="cheese" value={props.cheese} />
         </Col>
         <Col>
